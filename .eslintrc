@@ -1,0 +1,20 @@
+{
+  "parser": "esprima",
+  "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+  },
+  "env": {
+      "commonjs": true,
+      "node": true,
+      "es6" : true
+  },
+  "extends": [
+    "airbnb-base"    
+  ],
+  "plugins": [
+    "import"
+  ],
+  "rules": {
+  } 
+}

@@ -1,0 +1,11 @@
+{
+  "watch": [
+    "index.js",
+    "routes",
+    "passport",
+    "models",
+    "test"
+  ],
+  "exec": "node index.js",
+  "ext": "js json"
+}
