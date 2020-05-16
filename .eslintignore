@@ -1,0 +1,9 @@
+.eslint*
+**/node_modules
+**/spec
+**/test
+**/bower_components
+**/lib
+**/vendor
+**/*.min.js
+**/public
