@@ -3,10 +3,6 @@ module.exports = (sequelize, DataTypes) => {
     'Video',
     {
       url: DataTypes.STRING,
-      daylogId: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-      },
     },
     {
       hooks: {
@@ -16,13 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   );
   Video.associate = function (models) {
-    Video.belongsTo(models.Daylog, {
-      onDelete: 'cascade',
-      onUpdate: 'cascade',
-      foreignKey: {
-        allowNull: true,
-      },
-    });
+    // Video.belongsTo(models.User);
+    Video.belongsTo(models.Daylog);
   };
   return Video;
 };

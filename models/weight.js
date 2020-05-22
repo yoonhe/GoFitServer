@@ -3,22 +3,11 @@ module.exports = (sequelize, DataTypes) => {
     'Weight',
     {
       weight: DataTypes.INTEGER,
-      daylogId: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-      },
     },
     {},
   );
   Weight.associate = function (models) {
-    Weight.belongsTo(models.Daylog, {
-      onDelete: 'cascade',
-      onUpdate: 'cascade',
-      foreignKey: {
-        allowNull: true,
-      },
-    });
-    // associations can be defined here
+    Weight.belongsTo(models.Daylog);
   };
   return Weight;
 };
