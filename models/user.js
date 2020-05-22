@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       username: { type: DataTypes.STRING, allowNull: false, unique: true },
       password: { type: DataTypes.STRING, allowNull: false },
       height: DataTypes.INTEGER,
+      weight: DataTypes.INTEGER, // 회원 가입 당시 몸무게
     },
     {
       hooks: {
@@ -15,12 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     },
   );
   User.associate = function (models) {
-    User.hasMany(models.Daylog, {
-      foreignKey: 'userId',
-    });
-    User.hasMany(models.Video, {
-      foreignKey: 'userId',
-    });
+    // User.hasMany(models.Video);
+    User.hasMany(models.Daylog);
   };
   return User;
 };
