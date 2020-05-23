@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
   Daylog.associate = function (models) {
     Daylog.belongsTo(models.User);
     Daylog.hasMany(models.Video);
-    Daylog.hasOne(models.Weight);
+    Daylog.hasOne(models.Healthlog);
   };
   return Daylog;
 };

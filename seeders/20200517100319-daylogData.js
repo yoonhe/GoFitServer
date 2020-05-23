@@ -10,7 +10,6 @@ module.exports = {
     const results = [];
     for (let i = 1; i < 6; i++) {
       const user = await User.findOne({ where: { id: i } });
-      // console.log("user", i, ":", user, "**");
       const obj = {
         id: i,
         message: datas[i],

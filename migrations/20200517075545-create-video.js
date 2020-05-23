@@ -10,6 +10,12 @@ module.exports = {
       url: {
         type: Sequelize.STRING,
       },
+      title: {
+        type: Sequelize.STRING,
+      },
+      duration: {
+        type: Sequelize.STRING,
+      },
       daylogId: {
         allowNull: true,
         type: Sequelize.INTEGER,
