@@ -34,10 +34,38 @@ router.post('/login', async (req, res, next) => {
   }
 });
 
-router.get('/signup', async (req, res, next) => {
+router.post('/signup', async (req, res, next) => {
   try {
-    // Database Logic
-    res.send(200);
+    const exUser = await db.User.findOne({
+      where: {
+        email: req.body.email,
+      },
+    });
+    if (exUser) {
+      return res.status(403).send('이미 사용중인 아이디입니다.');
+    }
+
+    const hashedPassword = await bcrypt.hash(req.body.password, 12); // salt는 10~13 사이로
+    const newUser = await db.User.create({
+      email: req.body.email,
+      username: req.body.username,
+      password: hashedPassword,
+      height: req.body.height,
+      weight: req.body.weight,
+    });
+    console.log(newUser);
+    return res.status(200).json(newUser);
+  } catch (e) {
+    console.error(e);
+    return next(e);
+  }
+});
+
+router.post('/logout', async (req, res, next) => {
+  try {
+    req.logout();
+    req.session.destroy();
+    res.send('Success Logout!');
   } catch (e) {
     console.error(e);
     next(e);
