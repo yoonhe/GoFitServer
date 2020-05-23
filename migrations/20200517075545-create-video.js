@@ -10,10 +10,10 @@ module.exports = {
       url: {
         type: Sequelize.STRING,
       },
-      title: {
+      youtubeTitle: {
         type: Sequelize.STRING,
       },
-      duration: {
+      youtubeTime: {
         type: Sequelize.STRING,
       },
       daylogId: {

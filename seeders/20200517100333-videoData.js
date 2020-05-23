@@ -20,8 +20,8 @@ module.exports = {
       const obj = {
         id: i,
         url: datas[i],
-        title: `title ${i}`,
-        duration: `1${i}:${i}${i + 1}`,
+        youtubeTitle: `title ${i}`,
+        youtubeTime: `1${i}:${i}${i + 1}`,
         daylogId: daylog.id,
         createdAt: new Date(),
         updatedAt: new Date(),
