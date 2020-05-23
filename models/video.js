@@ -3,8 +3,8 @@ module.exports = (sequelize, DataTypes) => {
     'Video',
     {
       url: DataTypes.STRING,
-      title: DataTypes.STRING,
-      duration: DataTypes.STRING,
+      youtubeTitle: DataTypes.STRING,
+      youtubeTime: DataTypes.STRING,
     },
     {
       hooks: {
