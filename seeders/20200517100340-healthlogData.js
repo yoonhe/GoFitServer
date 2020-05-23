@@ -12,16 +12,17 @@ module.exports = {
       const obj = {
         id: i,
         weight: 50 + i * 4,
+        water: i - 1,
         daylogId: daylog.id,
         createdAt: new Date(),
         updatedAt: new Date(),
       };
       results.push(obj);
     }
-    return queryInterface.bulkInsert('Weights', results, {});
+    return queryInterface.bulkInsert('Healthlogs', results, {});
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Weights', null, {});
+    return queryInterface.bulkDelete('Healthlogs', null, {});
   },
 };

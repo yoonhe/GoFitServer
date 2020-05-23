@@ -11,6 +11,7 @@ module.exports = {
         username: `testUser${i}`,
         password: `1234${i}`,
         height: `17${i}`,
+        weight: 70 + i * 4,
         createdAt: new Date(),
         updatedAt: new Date(),
       };
