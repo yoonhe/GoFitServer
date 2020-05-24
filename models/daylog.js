@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     Daylog.belongsTo(models.User);
     Daylog.hasMany(models.Video);
     Daylog.hasOne(models.Healthlog);
+    Daylog.belongsToMany(models.Tag, { through: 'DaylogTag' });
   };
   return Daylog;
 };
