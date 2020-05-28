@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon",
     "precommit": "lint-staged",
-    "test": "jest"
+    "test": "jest --silent"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "express": "^4.17.1",
     "express-session": "^1.17.1",
     "hpp": "^0.2.3",
+    "moment": "^2.26.0",
     "morgan": "^1.10.0",
     "mysql2": "^2.1.0",
     "nodemon": "^2.0.3",

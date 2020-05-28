@@ -8,12 +8,13 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     const datas = ['', 'Good job today', 'excited', 'so tired', 'zzz...', 'okay'];
     const results = [];
-    for (let i = 1; i < 6; i++) {
-      const user = await User.findOne({ where: { id: i } });
+    for (let i = 1; i < 200; i++) {
+      const oneUser = await User.findOne({ where: { id: Math.floor(Math.random() * 10) + 1 } });
+
       const obj = {
         id: i,
-        message: datas[i],
-        userId: user.id,
+        message: datas[Math.floor(Math.random() * datas.length)],
+        UserId: oneUser.id,
         createdAt: new Date(),
         updatedAt: new Date(),
       };
