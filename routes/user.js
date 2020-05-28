@@ -75,58 +75,69 @@ router.post('/logout', async (req, res, next) => {
 });
 
 router.get('/rank', async (req, res, next) => {
-  // 5월 1주차. 5월 2주차. 5월 3주차.
-  // 오늘은 몇 년도 몇 월의 몇 주차일까?
-  // 현재의 달을 가져오고. 몇 주차인지 알아야하고
-  // 그 주간의 기간동안 운동의 누적시간을 구한다.
+  try {
+    // const startDay = moment().day('Sunday').format('YYYY-MM-DD');
+    // const endDay = moment().day('Saturday').format('YYYY-MM-DD');
+    const startDay = moment(moment().subtract(7, 'days')).day('Sunday').format('YYYY-MM-DD');
+    const endDay = moment(moment().subtract(7, 'days')).day('Saturday').format('YYYY-MM-DD');
 
-  // const startDay = moment(moment().subtract(7, 'days')).day('Sunday').format('YYYY-MM-DD');
-  // const endDay = moment(moment().subtract(7, 'days')).day('Saturday').format('YYYY-MM-DD');
-
-  const startDay = moment().day('Sunday').format('YYYY-MM-DD');
-  const endDay = moment().day('Saturday').format('YYYY-MM-DD');
-
-  console.log(startDay, endDay);
-
-  // const test = await db.Daylog.findAll({
-  //   where: {
-  //     createdAt: {
-  //       [Op.gte]: new Date(`${startDay} 00:00:00.000Z`),
-  //       [Op.lte]: new Date(`${endDay} 23:59:59.000Z`),
-  //     },
-  //   },
-  //   include: [
-  //     {
-  //       model: db.Video,
-  //       attributes: ['youtubeTime'],
-  //     },
-  //   ],
-  //   order: ['UserId'],
-  // });
-
-  const test = await db.User.findAll({
-    include: [
-      {
-        model: db.Daylog,
-        attributes: ['id'],
-        include: [
-          {
-            model: db.Video,
-            attributes: ['youtubeTime'],
-            where: {
-              createdAt: {
-                [Op.gte]: new Date(`${startDay} 00:00:00.000Z`),
-                [Op.lte]: new Date(`${endDay} 23:59:59.000Z`),
+    const data = await db.User.findAll({
+      include: [
+        {
+          model: db.Daylog,
+          attributes: ['id'],
+          include: [
+            {
+              model: db.Video,
+              attributes: ['youtubeTime'],
+              where: {
+                createdAt: {
+                  [Op.gte]: new Date(`${startDay} 00:00:00.000Z`),
+                  [Op.lte]: new Date(`${endDay} 23:59:59.000Z`),
+                },
               },
             },
-          },
-        ],
+          ],
+        },
+      ],
+      attributes: ['id'],
+      order: ['id'],
+    });
+
+    const rankArr = [];
+
+    data.map(v => {
+      const sum = v.Daylogs.reduce((acc, cur) => {
+        return acc + Number(cur.Videos[0].youtubeTime);
+      }, 0);
+      const form = {
+        id: v.id,
+        sum,
+      };
+      rankArr.push(form);
+    });
+
+    rankArr.sort((a, b) => b.sum - a.sum);
+    const rankId = rankArr.map(v => v.id);
+
+    const rankUsers = await db.User.findAll({
+      where: {
+        id: {
+          [Op.in]: rankId,
+        },
       },
-    ],
-    attributes: ['id'],
-    order: ['id'],
-  });
-  res.json(test);
+    });
+
+    const sortedUser = [];
+    rankId.map(id => {
+      const userIndex = rankUsers.findIndex(user => user.id === id);
+      sortedUser.push(rankUsers[userIndex]);
+    });
+
+    res.json(sortedUser);
+  } catch (e) {
+    next(e);
+  }
 });
 
 module.exports = router;
