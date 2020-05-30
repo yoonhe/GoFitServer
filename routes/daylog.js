@@ -72,7 +72,7 @@ router.get('/:date', async (req, res, next) => {
 });
 
 // 현재 날짜에 포스트 날리기
-router.post('/daylog', async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   const { message, youtubeTitle, youtubeTime, url, weight, water } = req.body;
   const { id } = req.user; // DB 의 userId임
   const seconds = youtubeTime.split(':').reduce((acc, time) => 60 * acc + +time);
