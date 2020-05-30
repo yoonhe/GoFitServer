@@ -44,7 +44,7 @@ router.post('/signup', async (req, res, next) => {
       },
     });
     if (exUser) {
-      return res.status(403).send('이미 사용중인 아이디입니다.');
+      return res.status(409).send('이미 사용중인 아이디입니다.');
     }
 
     const hashedPassword = await bcrypt.hash(req.body.password, 12); // salt는 10~13 사이로
