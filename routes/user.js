@@ -126,11 +126,13 @@ router.get('/rank', async (req, res, next) => {
           [Op.in]: rankId,
         },
       },
+      raw: true,
     });
 
     const sortedUser = [];
-    rankId.map(id => {
+    rankId.map((id, index) => {
       const userIndex = rankUsers.findIndex(user => user.id === id);
+      rankUsers[userIndex].score = rankArr[index].sum;
       sortedUser.push(rankUsers[userIndex]);
     });
 
@@ -143,14 +145,14 @@ router.get('/rank', async (req, res, next) => {
 router.get('/', async (req, res, next) => {
   try {
     if (req.isAuthenticated()) {
-      const user = { ...req.user.toJSON()};
+      const user = { ...req.user.toJSON() };
       delete user.password;
       return res.json(user);
     }
     return res.send(401);
   } catch (e) {
     console.error(e);
-    next(e)
+    next(e);
   }
 });
 
