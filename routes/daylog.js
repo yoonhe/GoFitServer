@@ -42,14 +42,14 @@ router.get('/daylog', async (req, res, next) => {
 
 // 특정 날짜를 포함한 달의 전체 데이로그를 겟 할 때
 router.get('/daylog/:date', async (req, res, next) => {
-  // const { id } = req.user; // DB 의 userId임
+  const { id } = req.user; // DB 의 userId임
   const targetDate = moment(req.params.date).format('YYYY-MM');
   const year = moment(targetDate).format('YYYY');
   const month = moment(targetDate).format('MM');
   try {
     const logs = await db.Daylog.findAll({
       where: {
-        userId: 15,
+        userId: id,
         createdAt: {
           [Op.gte]: new Date(`${year}-${month}-01 00:00:00.000Z`),
           [Op.lte]: new Date(
