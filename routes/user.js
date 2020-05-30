@@ -140,4 +140,13 @@ router.get('/rank', async (req, res, next) => {
   }
 });
 
+router.get('/', async (req, res, next) => {
+  console.log(req.isAuthenticated());
+  // const user = Object.assign({}, req.user.toJSON());
+  // const user = { ...req.user.toJSON()} ;
+  // delete user.password;
+  // console.log(user);
+  res.send('ok');
+});
+
 module.exports = router;
