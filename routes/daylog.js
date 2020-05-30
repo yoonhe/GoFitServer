@@ -128,4 +128,42 @@ router.post('/daylog/edit/:targetId', async (req, res, next) => {
   }
 });
 
+router.get('/:tagid', async (req, res, next) => {
+  try {
+    const { id } = req.user; // DB 의 userId임
+    const year = moment().format('YYYY');
+    const month = moment().format('MM');
+    const logs = await db.Daylog.findAll({
+      where: {
+        userId: id,
+        createdAt: {
+          [Op.gte]: new Date(`${year}-${month}-01 00:00:00.000Z`),
+          [Op.lte]: new Date(
+            `${year}-${month}-${new Date(year, month, 0).getDate()} 23:59:59.000Z`,
+          ),
+        },
+      },
+      include: [
+        {
+          model: db.Video,
+        },
+        {
+          model: db.Healthlog,
+        },
+        {
+          model: db.Tag,
+          through: 'DaylogTag',
+          where: {
+            id: req.params.tagid,
+          },
+        },
+      ],
+    });
+    res.json(logs);
+  } catch (e) {
+    console.error(e);
+    next(e);
+  }
+});
+
 module.exports = router;
