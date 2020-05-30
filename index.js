@@ -9,6 +9,7 @@ const hpp = require('hpp');
 
 const passportConfig = require('./passport');
 const db = require('./models');
+const mailingService = require('./services/mailing');
 
 const userAPIRouter = require('./routes/user');
 const daylogAPIRouter = require('./routes/daylog');
@@ -69,6 +70,8 @@ app.use('/api/user', userAPIRouter);
 app.use('/api/daylog', daylogAPIRouter);
 app.use('/api/calendar', calendarAPIRouter);
 app.use('/api/video', videoAPIRouter);
+
+app.use(mailingService);
 
 app.listen(prod ? process.env.PORT : process.env.PORT, () => {
   console.log(`server is running on ${process.env.PORT}`);

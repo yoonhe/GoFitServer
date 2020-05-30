@@ -6,6 +6,7 @@
     "passport",
     "models",
     "test",
+    "services",
     "nodemon.json"
   ],
   "exec": "node index.js",
