@@ -32,7 +32,7 @@ router.get('/', async (req, res, next) => {
     res.json(200, logs);
   } catch (e) {
     console.error(e);
-    res.status(500).status('network error');
+    res.status(500).send('network error');
     next(e);
   }
 });
@@ -60,7 +60,7 @@ router.get('/:date', async (req, res, next) => {
     res.send(200, logs);
   } catch (e) {
     console.error(e);
-    res.status(500).status('network error');
+    res.status(500).send('network error');
     next(e);
   }
 });
@@ -86,7 +86,7 @@ router.post('/', async (req, res, next) => {
     res.status(200).send('create success!');
   } catch (e) {
     console.error(e);
-    res.status(500).status('network error');
+    res.status(500).send('network error');
     next(e);
   }
 });
@@ -102,7 +102,7 @@ router.post('/edit/:targetId', async (req, res, next) => {
     res.status(200).send('edit success!');
   } catch (e) {
     console.error(e);
-    res.status(500).status('network error');
+    res.status(500).send('network error');
     next(e);
   }
 });
