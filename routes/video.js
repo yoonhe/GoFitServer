@@ -42,7 +42,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // 특정 날짜 비디오 GET
-router.get('/video/:date', async (req, res, next) => {
+router.get('/:date', async (req, res, next) => {
   const { id } = req.user; // DB 의 userId임
   const date = moment(req.params.date).format('YYYY-MM-DD');
   try {

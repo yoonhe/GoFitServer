@@ -10,7 +10,7 @@ const moment = require('moment');
 const db = require('../models');
 
 // 현재 날짜가 속한 달의 게시물을 전체 get
-router.get('/daylog', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   const { id } = req.user; // DB 의 userId임
   const year = moment().format('YYYY');
   const month = moment().format('MM');
@@ -41,7 +41,7 @@ router.get('/daylog', async (req, res, next) => {
 });
 
 // 특정 날짜를 포함한 달의 전체 데이로그를 겟 할 때
-router.get('/daylog/:date', async (req, res, next) => {
+router.get('/:date', async (req, res, next) => {
   const { id } = req.user; // DB 의 userId임
   const targetDate = moment(req.params.date).format('YYYY-MM');
   const year = moment(targetDate).format('YYYY');
@@ -112,7 +112,7 @@ router.post('/daylog', async (req, res, next) => {
 });
 
 // 특정 날짜의 게시물 수정하기
-router.post('/daylog/edit/:targetId', async (req, res, next) => {
+router.post('/edit/:targetId', async (req, res, next) => {
   const { message, weight, water } = req.body;
   const { id } = req.user; // DB 의 userId임
   const { targetId } = req.params;
