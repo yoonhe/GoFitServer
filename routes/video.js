@@ -10,7 +10,7 @@ const moment = require('moment');
 const db = require('../models');
 
 // 오늘 날짜 video GET (daylog가 등록 이미 된것만 볼 수 있음)
-router.get('/video', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   const { id } = req.user; // DB 의 userId임
   const date = moment().format('YYYY-MM-DD');
   try {
@@ -32,6 +32,7 @@ router.get('/video', async (req, res, next) => {
       ],
       raw: true,
     });
+    console.log(videos);
     res.json(200, videos);
   } catch (e) {
     console.log(e);
