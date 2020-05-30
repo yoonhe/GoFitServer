@@ -23,7 +23,7 @@ router.post('/login', async (req, res, next) => {
           }
           const fullUser = await db.User.findOne({
             where: { id: user.id },
-          });
+          }).then(result => result.update({ lastLoginAt: new Date() }));
           return res.json(fullUser);
         } catch (e) {
           next(e);
