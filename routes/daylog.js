@@ -74,16 +74,16 @@ router.get('/daylog/:date', async (req, res, next) => {
 // 현재 날짜에 포스트 날리기
 router.post('/daylog', async (req, res, next) => {
   const { message, youtubeTitle, youtubeTime, url, weight, water } = req.body;
-  const { id } = req.user; // DB 의 userId임
-
+  // const { id } = req.user; // DB 의 userId임
+  const id = 15;
   const seconds = youtubeTime.split(':').reduce((acc, time) => 60 * acc + +time);
 
   try {
     const daylog = await db.Daylog.create({ UserId: id, message });
     await db.Video.create({
       DaylogId: daylog.id,
+      youtubeTime: seconds,
       url,
-      seconds,
       youtubeTitle,
     });
     await db.Healthlog.create({
@@ -124,6 +124,14 @@ router.post('/daylog/edit/:targetId', async (req, res, next) => {
   } catch (e) {
     console.error(e);
     res.status(500).status('network error');
+    next(e);
+  }
+});
+
+router.get('/daylog/:tagid', async (req, res, next) => {
+  try {
+  } catch (e) {
+    console.error(e);
     next(e);
   }
 });
