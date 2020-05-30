@@ -142,11 +142,14 @@ router.get('/rank', async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    const user = { ...req.user.toJSON()};
-    delete user.password;
-    res.json(user)
+    if (req.isAuthenticated()) {
+      const user = { ...req.user.toJSON()};
+      delete user.password;
+      return res.json(user);
+    }
+    return res.send(401);
   } catch (e) {
-    console.err(e)
+    console.error(e);
     next(e)
   }
 });
