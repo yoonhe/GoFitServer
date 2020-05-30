@@ -64,5 +64,6 @@ const mailingService = async (req, res, next) => {
 };
 
 schedule.scheduleJob({ hour: 9, minute: 0, dayOfWeek: 1 }, mailingService);
+// dayOfweek : 0 Sun - 6 Sat
 
 module.exports = mailingService;
