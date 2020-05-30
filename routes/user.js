@@ -23,7 +23,7 @@ router.post('/login', async (req, res, next) => {
           }
           const fullUser = await db.User.findOne({
             where: { id: user.id },
-          });
+          }).then(result => result.update({ lastLoginAt: new Date() }));
           return res.json(fullUser);
         } catch (e) {
           next(e);
@@ -137,6 +137,17 @@ router.get('/rank', async (req, res, next) => {
     res.json(sortedUser);
   } catch (e) {
     next(e);
+  }
+});
+
+router.get('/', async (req, res, next) => {
+  try {
+    const user = { ...req.user.toJSON()};
+    delete user.password;
+    res.json(user)
+  } catch (e) {
+    console.err(e)
+    next(e)
   }
 });
 

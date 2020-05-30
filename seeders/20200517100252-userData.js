@@ -15,6 +15,7 @@ module.exports = {
         weight: 70 + i * 4,
         createdAt: new Date(),
         updatedAt: new Date(),
+        lastLoginAt: new Date(),
       };
       datas.push(obj);
     }
