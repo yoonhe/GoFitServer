@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       password: { type: DataTypes.STRING, allowNull: false },
       height: DataTypes.INTEGER,
       weight: DataTypes.INTEGER, // 회원 가입 당시 몸무게
+      lastLoginAt: DataTypes.DATE, // 마지막 접속 날짜
     },
     {
       hooks: {
