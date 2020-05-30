@@ -133,3 +133,6 @@ $RECYCLE.BIN/
 
 # code editro
 .vscode/
+
+#ara file
+routes/araTest.js
