@@ -2,9 +2,12 @@
   "watch": [
     "index.js",
     "routes",
+    "config",
     "passport",
     "models",
-    "test"
+    "test",
+    "services",
+    "nodemon.json"
   ],
   "exec": "node index.js",
   "ext": "js json"
