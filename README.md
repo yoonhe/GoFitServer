@@ -4,6 +4,25 @@ Go-fit is a RESTful server API for a daily log web-application, providing the ma
 
 
 
+## Table of Contents
+
+- [Features](#Features)
+
+- [Technologies](#Technologies)
+
+- [Setup](#Setup)
+
+- [Usage](#Usage)
+- [Feedback](#Feedback)
+
+
+
+## Technologies
+
+<img src="https://miro.medium.com/max/365/1*Jr3NFSKTfQWRUyjblBSKeg.png" alt="Get in Touch with Express.js - Basho Code - Medium" style="zoom:15%" /> 4.17.1  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR-ERa_H-wFBnjA0878uUjcm0biQRbXqlUl8EBDu6yWE9tmq3D2&amp;usqp=CAU" alt="MySQL 📘 ▻ sequelize 2탄 | 아구몬" style="zoom:33%;" />5.21.7
+
+
+
 ## Features
 
 * Log-in/out, sign-up
@@ -18,27 +37,33 @@ Go-fit is a RESTful server API for a daily log web-application, providing the ma
 
 Clone this repo to your desktop and run `npm install ` to install all the dependencies. You might want to look into ` config.json `to make change the port you want to use and set up a reminder email account.
 
-
-
 ## Usage
+
+```bash
+$ cd ../Go-fit server
+$ npm i
+$ npm start
+```
 
 After you clone this repo to your desktop, go to its root directory and run `npm install` to install its dependencies.
 
 Once the dependencies are installed, you can run `npm start` to start the application. You will then be able to access it at localhost:7777
 
-- /api/user
+If you want to use reminder mailing function, you should go to this [link]([https://myaccount.google.com/lesssecureapps] ) and allow access to low-security apps while this API server  is going on.
+
+- [/api/user](#/api/user)
 
   : log-in, log-out, sign-up, rank
 
-- /api/daylog
+- [/api/daylog](#/api/daylog)
 
   : daylog, tag
 
-- /api/video
+- [/api/video](#/api/video)
 
   : youtube video info
 
-- /api/calender
+- [/api/calender](#/api/calender)
 
   : workoutday
 
@@ -46,7 +71,7 @@ Once the dependencies are installed, you can run `npm start` to start the applic
 
 ### /api/user
 
-#### Log-in
+#### Log-in `Post`
 
 ----
 
@@ -88,7 +113,7 @@ Axios.post('/api/user/login', data);
 
 
 
-#### Log-out
+#### Log-out`Post`
 
 -----
 
@@ -120,7 +145,7 @@ Axios.post('/api/user/logout');
 
 
 
-#### Sign-up
+#### Sign-up `Post`
 
 -----
 
@@ -156,7 +181,7 @@ Axios.post('/api/user/signup', data);
 
 
 
-#### rank
+#### rank `Get`
 
 -----
 
@@ -376,3 +401,140 @@ Edits a certain daylog
 Axios.post('/api/daylog/edit/2020-05-30', data); 
 ```
 
+
+
+### /api/calendar
+
+#### calendar `Get`
+
+----
+
+Returns json data of workout dates per month
+
+* **URL**
+
+  /api/calendar/:date
+
+* **Method**
+
+  `Get` 
+
+* **URL Params**
+
+  **Required**
+
+  `date=yyyy-mm-dd`
+
+* **Sucess Response:**
+
+  - **Code:** 200
+
+    **Content**: returns json daylog in yyyy-mm
+
+    ```javascript
+    //If date = 2020-05-03, the result of May 2020 would be ...
+    [ { createdAt: '2020-05-02T09:24:40.000Z' },
+      { createdAt: '2020-05-15T14:24:40.000Z' },
+      { createdAt: '2020-05-31T16:24:40.000Z' },
+     // ...skip!
+     ]
+    ```
+
+* **Error Response:**
+
+  - **Code:** 500 
+
+    **Content:** `'Network Error'`
+
+* **Sample Call:**
+
+```javascript
+Axios.get('/api/calender/2020-05-30'); 
+```
+
+
+
+### /api/video
+
+#### video `Get`
+
+----
+
+Returns json data of workout dates per month
+
+* **URL**
+
+  /api/video/:date
+
+* **Method**
+
+  `Get` 
+
+* **URL Params**
+
+  **Required**
+
+  `date=yyyy-mm-dd`
+
+* **Sucess Response:**
+
+  - **Code:** 200
+
+    **Content**: returns json daylog in yyyy-mm
+
+    ```javascript
+    //If date = 2020-05-30, the result of 30th May 2020 would be ...
+    [ { id: 22,
+        'Videos.id': 22,
+        'Videos.url': 'https://youtu.be/nQlbDogfCpE',
+        'Videos.youtubeTitle': 'title 22',
+        'Videos.youtubeTime': '17',
+        'Videos.createdAt': 2020-05-30T05:24:40.000Z,
+        'Videos.updatedAt': 2020-05-30T05:24:40.000Z,
+        'Videos.DaylogId': 22 },
+      { id: 30,
+        'Videos.id': 30,
+        'Videos.url': 'https://youtu.be/VVn5IUM8sms',
+        'Videos.youtubeTitle': 'title 30',
+        'Videos.youtubeTime': '83',
+        'Videos.createdAt': 2020-05-30T05:24:40.000Z,
+        'Videos.updatedAt': 2020-05-30T05:24:40.000Z,
+        'Videos.DaylogId': 30 }
+    ]
+    ```
+
+* **Error Response:**
+
+  - **Code:** 500 
+
+    **Content:** `'Network Error'`
+
+* **Sample Call:**
+
+```javascript
+Axios.get('/api/video/2020-05-30'); 
+```
+
+
+
+## Feedback
+
+### Development
+
+Want to contribute? Great! :blue_heart:
+
+To fix a bug or enhance an existing module, follow these steps:
+
+- Fork the repo
+- Create a new branch (`git checkout -b improve-feature`)
+- Make the appropriate changes in the files
+- Add changes to reflect the changes made
+- Commit your changes (`git commit -am 'Improve feature'`)
+- Push to the branch (`git push origin improve-feature`)
+- Create a Pull Request
+
+### Bug / Feature Request
+
+If you find a bug (the API couldn't handle the query and / or gave undesired results), kindly open an issue [here](https://github.com/codestates/GoFit-server/issues/new) by including your search query and the expected result.
+
+If you'd like to request a new function, feel free to do so by opening an issue [here](https://github.com/codestates/GoFit-server/issues/new). Please include sample queries and their corresponding results.
