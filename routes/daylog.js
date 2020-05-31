@@ -127,7 +127,7 @@ router.post('/edit/:targetId', async (req, res, next) => {
   }
 });
 
-router.get('/:tagid', async (req, res, next) => {
+router.get('/tag/:tagid', async (req, res, next) => {
   try {
     const { id } = req.user; // DB 의 userId임
     const year = moment().format('YYYY');
