@@ -23,7 +23,7 @@ module.exports = {
         id: 199 + i,
         weight: 50 + Math.floor(Math.random() * 9),
         water: Math.floor(Math.random() * 10),
-        daylogId: daylog.id,
+        daylogId: 199 + i,
         createdAt: moment().subtract(7, 'd').format('YYYY-MM-DD HH:mm:ss'),
         updatedAt: moment().subtract(7, 'd').format('YYYY-MM-DD HH:mm:ss'),
       };
