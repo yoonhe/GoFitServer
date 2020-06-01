@@ -43,7 +43,7 @@ After you clone this repo to your desktop, go to its root directory and run `npm
 
 Once the dependencies are installed, you can run `npm start` to start the application. You will then be able to access it at localhost:7777
 
-If you want to use reminder mailing function, you should go to this [link]([https://myaccount.google.com/lesssecureapps]) and allow access to low-security apps while this API server is going on.
+If you want to use reminder mailing function, you should go to this [link](https://myaccount.google.com/lesssecureapps) and allow access to low-security apps while this API server is going on.
 
 - [/api/user](#/api/user)
 
