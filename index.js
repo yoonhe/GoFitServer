@@ -73,7 +73,7 @@ app.use('/api/video', videoAPIRouter);
 
 app.use(mailingService);
 
-app.listen(prod ? process.env.PORT : process.env.PORT, () => {
+app.listen(prod ? process.env.PORT : 7777, () => {
   console.log(`server is running on ${process.env.PORT}`);
 });
 
