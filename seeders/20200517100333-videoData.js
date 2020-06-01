@@ -38,7 +38,7 @@ module.exports = {
         url: datas[Math.floor(Math.random() * datas.length)],
         youtubeTitle: `title ${i}`,
         youtubeTime: Math.floor(Math.random() * 100),
-        daylogId: daylog.id,
+        daylogId: 199 + i,
         createdAt: moment().subtract(7, 'd').format('YYYY-MM-DD HH:mm:ss'),
         updatedAt: moment().subtract(7, 'd').format('YYYY-MM-DD HH:mm:ss'),
       };
