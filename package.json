@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon",
     "precommit": "lint-staged",
-    "test": "jest --silent"
+    "test": "jest --silent",
+    "start": "pm2 start index"
   },
   "repository": {
     "type": "git",
